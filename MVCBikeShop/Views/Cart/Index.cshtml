@@ -1,0 +1,50 @@
+﻿@model MVCBikeShop.Models.ViewModels.CartIndexViewModel 
+@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+    <body>
+        <h1>Cart</h1>
+        <table class="table">
+            <thead>
+                <tr>
+
+                    <th>
+                        Title
+                    </th>
+                    <th>
+                        Quantity
+                    </th>
+                    <th>
+                        Price
+                    </th>
+                    <th>
+                        Subtotal
+                    </th>
+                </tr>
+
+            </thead>
+            <tbody>
+                @foreach (var line in Model.Cart.Lines)
+                {
+                    <tr>
+                        <td>@line.Bike.BikeTitle</td>
+                        <td>@line.Quantity</td>
+                        <td>@line.Bike.Price UAH</td>
+                        <td>@(line.Quantity * line.Bike.Price) UAH</td>
+                    </tr>
+                }
+            </tbody>
+            <tfoot>
+                <tr>
+                    <th>Total: </th>
+                    <td>@Model.Cart.ComputeTotalValue() UAH</td>
+                </tr>
+            </tfoot>
+        </table>
+
+        <p>
+            <a href="@Model.ReturnUrl" class="btn btn-primary">Continue Shopping</a>
+        </p>
+    </body>

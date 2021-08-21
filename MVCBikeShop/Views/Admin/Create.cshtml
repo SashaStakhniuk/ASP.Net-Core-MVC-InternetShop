@@ -1,0 +1,105 @@
+﻿@model MVCBikeShop.Models.Bike
+@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    ViewData["Title"] = "Adding some Bike";
+}
+<div>
+    <form method="post" class="create">
+        @Html.HiddenFor(x=> x.BikeId)
+        <div class="col m-2">
+            @*<label>Title:</label>*@
+            @Html.LabelFor(x => x.BikeTitle)
+            @Html.TextBoxFor(x => x.BikeTitle)
+        </div>
+        <div>
+            @*<label>Manufactury:</label>*@
+            @Html.LabelFor(x => x.ManufacturyId)
+            <select name="ManufacturyId">
+
+                @foreach (var manufactury in ViewBag.DB.Manufacturies)
+                {
+
+                    if (manufactury.ManufacturyId == Model.ManufacturyId)
+                    {
+                        <option selected value="@manufactury.ManufacturyId">@manufactury.ManufacturyTitle</option>
+                    }
+                    else
+                    {
+                        <option value="@manufactury.ManufacturyId">@manufactury.ManufacturyTitle</option>
+                    }
+                }
+            </select>
+        </div>
+        <div>
+            @Html.LabelFor(x => x.TypeId)
+            <select name="TypeId">
+                @foreach (var type in ViewBag.DB.Types)
+                {
+                    if (type.TypeId == Model.TypeId)
+                    {
+                        <option selected value="@type.TypeId">@type.TypeTitle</option>
+                    }
+                    else
+                    {
+                        <option value="@type.TypeId">@type.TypeTitle</option>
+                    }
+                }
+            </select>
+        </div>
+        <div>
+            @Html.LabelFor(x => x.MaterialId)
+            <select name="MaterialId">
+                @foreach (var material in ViewBag.DB.Materials)
+                {
+                    if (material.MaterialId == Model.MaterialId)
+                    {
+                        <option selected value="@material.MaterialId">@material.MaterialTitle</option>
+                    }
+                    else
+                    {
+                        <option value="@material.MaterialId">@material.MaterialTitle</option>
+                    }
+                }
+            </select>
+        </div>
+        <div>
+            @Html.LabelFor(x => x.BreakTypeId)
+            <select name="BreakTypeId">
+                @foreach (var breakType in ViewBag.DB.BreakTypes)
+                {
+                    if (breakType.BreakTypeId == Model.BreakTypeId)
+                    {
+                        <option selected value="@breakType.BreakTypeId">@breakType.BreakTypeTitle</option>
+                    }
+                    else
+                    {
+                        <option value="@breakType.BreakTypeId">@breakType.BreakTypeTitle</option>
+                    }
+                }
+            </select>
+        </div>
+        <div>
+            @Html.LabelFor(x => x.SpeedCount)
+            @Html.TextBoxFor(x => x.SpeedCount)
+        </div>
+        <div>
+            @Html.LabelFor(x => x.Size)
+            @Html.TextBoxFor(x => x.Size)
+        </div>
+        <div>
+            @Html.LabelFor(x => x.WheelDiameter)
+            @Html.TextBoxFor(x => x.WheelDiameter)
+        </div>
+        <div>
+            @Html.LabelFor(x => x.PhotoPath)
+            @Html.TextBoxFor(x => x.PhotoPath)
+        </div>
+        <div>
+            @Html.LabelFor(x => x.Price)
+            @Html.TextBoxFor(x => x.Price)
+        </div>
+        <input type="submit" value="Add" class="btn btn-success" />
+    </form>
+</div>
