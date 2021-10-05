@@ -6,100 +6,118 @@
     ViewData["Title"] = "Adding some Bike";
 }
 <div>
-    <form method="post" class="create">
-        @Html.HiddenFor(x=> x.BikeId)
-        <div class="col m-2">
-            @*<label>Title:</label>*@
+    <form method="post" class="p-5 m-2">
+        @Html.HiddenFor(x => x.BikeId)
+        <div class="form-group">
             @Html.LabelFor(x => x.BikeTitle)
-            @Html.TextBoxFor(x => x.BikeTitle)
+            @Html.TextBoxFor(x => x.BikeTitle, new { @class = "form-control" })
         </div>
-        <div>
-            @*<label>Manufactury:</label>*@
-            @Html.LabelFor(x => x.ManufacturyId)
-            <select name="ManufacturyId">
+        <div class="row">
+            <div class="form-group col-md-6">
+                @Html.LabelFor(x => x.ManufacturyId)
+                <select name="ManufacturyId" class="form-select">
 
-                @foreach (var manufactury in ViewBag.DB.Manufacturies)
-                {
+                    @foreach (var manufactury in ViewBag.DB.Manufacturies)
+                    {
 
-                    if (manufactury.ManufacturyId == Model.ManufacturyId)
-                    {
-                        <option selected value="@manufactury.ManufacturyId">@manufactury.ManufacturyTitle</option>
+                        if (manufactury.ManufacturyId == Model.ManufacturyId)
+                        {
+                            <option selected value="@manufactury.ManufacturyId">@manufactury.ManufacturyTitle</option>
+                        }
+                        else
+                        {
+                            <option value="@manufactury.ManufacturyId">@manufactury.ManufacturyTitle</option>
+                        }
                     }
-                    else
+                </select>
+            </div>
+            <div class="form-group col-md-6">
+                @Html.LabelFor(x => x.TypeId)
+                <select name="TypeId" class="form-select">
+                    @foreach (var type in ViewBag.DB.Types)
                     {
-                        <option value="@manufactury.ManufacturyId">@manufactury.ManufacturyTitle</option>
+                        if (type.TypeId == Model.TypeId)
+                        {
+                            <option selected value="@type.TypeId">@type.TypeTitle</option>
+                        }
+                        else
+                        {
+                            <option value="@type.TypeId">@type.TypeTitle</option>
+                        }
                     }
-                }
-            </select>
+                </select>
+            </div>
         </div>
-        <div>
-            @Html.LabelFor(x => x.TypeId)
-            <select name="TypeId">
-                @foreach (var type in ViewBag.DB.Types)
-                {
-                    if (type.TypeId == Model.TypeId)
+        <div class="row">
+            <div class="form-group col-md-6">
+                @Html.LabelFor(x => x.MaterialId)
+                <select name="MaterialId" class="form-select">
+                    @foreach (var material in ViewBag.DB.Materials)
                     {
-                        <option selected value="@type.TypeId">@type.TypeTitle</option>
+                        if (material.MaterialId == Model.MaterialId)
+                        {
+                            <option selected value="@material.MaterialId">@material.MaterialTitle</option>
+                        }
+                        else
+                        {
+                            <option value="@material.MaterialId">@material.MaterialTitle</option>
+                        }
                     }
-                    else
+                </select>
+            </div>
+            <div class="form-group col-md-6">
+                @Html.LabelFor(x => x.BreakTypeId)
+                <select name="BreakTypeId" class="form-select">
+                    @foreach (var breakType in ViewBag.DB.BreakTypes)
                     {
-                        <option value="@type.TypeId">@type.TypeTitle</option>
+                        if (breakType.BreakTypeId == Model.BreakTypeId)
+                        {
+                            <option selected value="@breakType.BreakTypeId">@breakType.BreakTypeTitle</option>
+                        }
+                        else
+                        {
+                            <option value="@breakType.BreakTypeId">@breakType.BreakTypeTitle</option>
+                        }
                     }
-                }
-            </select>
+                </select>
+            </div>
         </div>
-        <div>
-            @Html.LabelFor(x => x.MaterialId)
-            <select name="MaterialId">
-                @foreach (var material in ViewBag.DB.Materials)
-                {
-                    if (material.MaterialId == Model.MaterialId)
-                    {
-                        <option selected value="@material.MaterialId">@material.MaterialTitle</option>
-                    }
-                    else
-                    {
-                        <option value="@material.MaterialId">@material.MaterialTitle</option>
-                    }
-                }
-            </select>
+        <div class="row">
+            <div class="form-group col-md-6">
+                <label for="speedCount">SpeedCount:</label>
+                <input type="number" min="0" name="speedCount" value="@Model.SpeedCount" class="form-control" />
+            </div>
+            <div class="form-group col-md-6">
+                <label for="size">Size:</label>
+                <input type="number" min="0" name="size" id="size" value="@Model.Size" class="form-control" />
+            </div>
         </div>
-        <div>
-            @Html.LabelFor(x => x.BreakTypeId)
-            <select name="BreakTypeId">
-                @foreach (var breakType in ViewBag.DB.BreakTypes)
-                {
-                    if (breakType.BreakTypeId == Model.BreakTypeId)
-                    {
-                        <option selected value="@breakType.BreakTypeId">@breakType.BreakTypeTitle</option>
-                    }
-                    else
-                    {
-                        <option value="@breakType.BreakTypeId">@breakType.BreakTypeTitle</option>
-                    }
-                }
-            </select>
+        <div class="row">
+            <div class="form-group col-md-6">
+                <label for="wheelDiameter">WheelDiameter:</label>
+                <input type="number" name="wheelDiameter" min="0" value="@Model.WheelDiameter" id="wheelDiameter" class="form-control" />
+            </div>
+            <div class="form-group col-md-6">
+                <label for="price">Price:</label>
+                <input type="number" name="price" min="0" id="price" value="@Model.Price" class="form-control" />
+            </div>
         </div>
-        <div>
-            @Html.LabelFor(x => x.SpeedCount)
-            @Html.TextBoxFor(x => x.SpeedCount)
+        <div class="form-group">
+            <label for="photoPath">PhotoPath:</label>
+            <input type="text" name="photoPath" id="photoPath" value="@Model.PhotoPath" class="form-control" />
         </div>
-        <div>
-            @Html.LabelFor(x => x.Size)
-            @Html.TextBoxFor(x => x.Size)
+        @*<div class="form-group">
+            <label for="Photo_Base64">Photo_Base64:</label>
+            <input type="text" name="Photo_Base64" class="form-control" />
+        </div>*@
+        @*<div class="input-group mb-3">
+            <input type="file" name="photo_Base64" class="form-control" id="photo_Base64">
+            <label class="input-group-text" for="photo_Base64">Upload</label>
+        </div>*@
+
+        @Html.ValidationSummary()
+        <div style="text-align:center;">
+            <input type="submit" value="Save" class="btn btn-success" style="min-width:50%; text-align:center;" />
         </div>
-        <div>
-            @Html.LabelFor(x => x.WheelDiameter)
-            @Html.TextBoxFor(x => x.WheelDiameter)
-        </div>
-        <div>
-            @Html.LabelFor(x => x.PhotoPath)
-            @Html.TextBoxFor(x => x.PhotoPath)
-        </div>
-        <div>
-            @Html.LabelFor(x => x.Price)
-            @Html.TextBoxFor(x => x.Price)
-        </div>
-        <input type="submit" value="Add" class="btn btn-success" />
     </form>
 </div>

@@ -1,41 +1,87 @@
-﻿@model MVCBikeShop.Models.ViewModels.CartIndexViewModel 
+﻿@model MVCBikeShop.Models.ViewModels.CartIndexViewModel
 @*
     For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 *@
 @{
 }
-    <body>
-        <h1>Cart</h1>
-        <table class="table">
-            <thead>
-                <tr>
 
-                    <th>
-                        Title
-                    </th>
-                    <th>
-                        Quantity
-                    </th>
-                    <th>
-                        Price
-                    </th>
-                    <th>
-                        Subtotal
-                    </th>
-                </tr>
+    <head>
+        <link type="text/css" rel="stylesheet" href="~/Css/background.css" />
+    </head>
+<body class="backCart">
+    <div class="p-2">
+        <h1 style="text-align:center; margin:1%;">Cart</h1>
+        @foreach (var line in Model.Cart.Lines)
+        {
+            <div class="card mb-3" style="min-width: 100%;">
+                <div class="row g-0">
+                    <div class="col-md-4">
+                        <img src="@line.Bike.PhotoPath" class="img-fluid rounded-start w-60" alt="...">
+                    </div>
+                    <div class="col-md-8">
+                        <div class="card-body">
+                            <h5 class="card-title">@line.Bike.BikeTitle</h5>
+                            <div style="margin-top:5%"></div>
+                            <div class="d-flex justify-content-center">
+                                <h6 style="color:lightgray;">Price per item: </h6> <h6>@line.Bike.Price</h6>
+                            </div>
+                            <div style="margin-top:10%"></div>
+                            <div class="d-flex justify-content-around ">
+                                <div class="d-flex">
+                                    <h6 style="color:lightgray;">Amount: </h6> <h6>@line.Quantity</h6>
+                                </div>
+                                <div class="d-flex">
+                                    <h6 style="color:lightgray;">Price: </h6> <h6>@(line.Quantity * line.Bike.Price) UAH</h6>
+                                </div>
+                            </div>
+                            <div class="d-flex justify-content-around">
+                                @using (Html.BeginForm("AddToCart", "Cart"))
+                                {
+                                    <input type="hidden" name="BikeId" value="@line.Bike.BikeId" />
+                                    @Html.Hidden("returnUrl", Context.Request.Path.Value)
+                                    <button type="submit" class="btn btn-outline-success">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-bag-plus" viewBox="0 0 16 16">
+                                            <path fill-rule="evenodd" d="M8 7.5a.5.5 0 0 1 .5.5v1.5H10a.5.5 0 0 1 0 1H8.5V12a.5.5 0 0 1-1 0v-1.5H6a.5.5 0 0 1 0-1h1.5V8a.5.5 0 0 1 .5-.5z" />
+                                            <path d="M8 1a2.5 2.5 0 0 1 2.5 2.5V4h-5v-.5A2.5 2.5 0 0 1 8 1zm3.5 3v-.5a3.5 3.5 0 1 0-7 0V4H1v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V4h-3.5zM2 5h12v9a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V5z" />
+                                        </svg>
+                                        Add one more
+                                    </button>
+                                }
+                                @if (line.Quantity > 1)
+                                {
+                                    @using (Html.BeginForm("RemoveOneFromCart", "Cart"))
+                                    {
+                                        <input type="hidden" name="BikeId" value="@line.Bike.BikeId" />
+                                        @Html.Hidden("returnUrl", Context.Request.Path.Value)
+                                        <button type="submit" class="btn btn-outline-danger">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
+                                                <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z" />
+                                                <path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z" />
+                                            </svg>
+                                            Remove One
+                                        </button>
+                                    }
+                                }
 
-            </thead>
-            <tbody>
-                @foreach (var line in Model.Cart.Lines)
-                {
-                    <tr>
-                        <td>@line.Bike.BikeTitle</td>
-                        <td>@line.Quantity</td>
-                        <td>@line.Bike.Price UAH</td>
-                        <td>@(line.Quantity * line.Bike.Price) UAH</td>
-                    </tr>
-                }
-            </tbody>
+                                @using (Html.BeginForm("RemoveFromCart", "Cart"))
+                                {
+                                    <input type="hidden" name="BikeId" value="@line.Bike.BikeId" />
+                                    @Html.Hidden("returnUrl", Context.Request.Path.Value)
+                                    <button type="submit" class="btn btn-outline-danger">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
+                                            <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z" />
+                                            <path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z" />
+                                        </svg>
+                                        Remove
+                                    </button>
+                                }
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+        <table class="fixed-bottom m-3">
             <tfoot>
                 <tr>
                     <th>Total: </th>
@@ -44,7 +90,54 @@
             </tfoot>
         </table>
 
-        <p>
-            <a href="@Model.ReturnUrl" class="btn btn-primary">Continue Shopping</a>
+        <p class="d-flex justify-content-around">
+            <a href="~/Home/Index" class="btn btn-secondary">Continue Shopping</a>
+            <a href="~/Home/Buy" class="btn btn-success" style="width:120px;height:40px;">Buy</a>
         </p>
-    </body>
+    </div>
+</body>
+
+    @*<body>
+            <h1>Cart</h1>
+            <table class="table">
+                <thead>
+                    <tr>
+
+                        <th>
+                            Title
+                        </th>
+                        <th>
+                            Quantity
+                        </th>
+                        <th>
+                            Price
+                        </th>
+                        <th>
+                            Subtotal
+                        </th>
+                    </tr>
+
+                </thead>
+                <tbody>
+                    @foreach (var line in Model.Cart.Lines)
+                    {
+                        <tr>
+                            <td>@line.Bike.BikeTitle</td>
+                            <td>@line.Quantity</td>
+                            <td>@line.Bike.Price UAH</td>
+                            <td>@(line.Quantity * line.Bike.Price) UAH</td>
+                        </tr>
+                    }
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <th>Total: </th>
+                        <td>@Model.Cart.ComputeTotalValue() UAH</td>
+                    </tr>
+                </tfoot>
+            </table>
+
+            <p>
+                <a href="@Model.ReturnUrl" class="btn btn-primary">Continue Shopping</a>
+            </p>
+        </body>*@

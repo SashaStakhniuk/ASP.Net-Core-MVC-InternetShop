@@ -1,0 +1,31 @@
+﻿@model MVCBikeShop.Models.ViewModels.UserViewModel
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@{
+}
+
+<div>
+
+    @*<div>@Model.UserId</div>*@
+    <div class="col">
+        <div class="card" style="width: 100%;height: 100%; margin-bottom:10px; display:flex;flex-direction:row;">
+            <img src="~/images/user.png" style="width:20%; height:20%" class="card-img-top" alt="...">
+            <div class="card-body">
+                <h2 class="card-title">My datas</h2>
+                <div class="d-flex">
+                    <p class="card-text">@Model.UserName </p>
+                    <p class="card-text"> @Model.LastName</p>
+                </div>
+                <p class="card-text">@Model.UserEmail</p>
+                <div style="height:5%;"></div>
+                <a asp-action="EditUser" asp-route-userid="@Model.UserId" asp-route-role="@Model.UserRoles.FirstOrDefault()" class="btn btn-warning">Edit my datas</a>
+                <form asp-controller="Account" asp-action="Logout" method="post">
+                    <button type="submit" class="btn btn-danger">Logout</button>
+                </form>
+            </div>
+        </div>
+    </div>
+    @*<a asp-action="EditUser" asp-route-userid="@Model.UserId" asp-route-role="@Model.AllRoles.FirstOrDefault()" class="btn btn-warning">Edit my datas</a>
+        <form asp-controller="Account" asp-action="Logout" method="post">
+            <button type="submit" class="btn btn-danger">Logout</button>
+        </form>*@
+</div>

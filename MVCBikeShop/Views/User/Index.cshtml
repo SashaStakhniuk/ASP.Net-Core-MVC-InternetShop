@@ -1,0 +1,51 @@
+﻿@model MVCBikeShop.Models.ViewModels.UserViewModel
+@{
+}
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
+
+<head>
+    <link type="text/css" rel="stylesheet" href="~/Css/background.css" />
+</head>
+<body class="back">
+    <h1 style="text-align:center; color:white; margin:3%;">List of users</h1>
+    <div style="text-align:center;">
+        <a href="~/User/CreateUser" class="btn btn-primary">Create new user</a>
+    </div>
+    <table class="table" style="color:white;">
+        <thead>
+            <tr>
+                @*<th>UserId</th>*@
+                <th>Name</th>
+                <th>LastName</th>
+                <th>Email</th>
+                <th>Role</th>
+                <th>Edit</th>
+                <th>Delete</th>
+            </tr>
+        </thead>
+        <tbody>
+
+            @foreach (var user in Model.UserManager.Users.ToList())
+            {
+                <tr>
+                    @*<td>@user.Id</td>*@
+                    <td>@user.UserName</td>
+                    <td>@user.LastName</td>
+                    <td>@user.Email</td>
+                    <td>@Model.UserManager.GetRolesAsync(user).Result.FirstOrDefault()</td>
+                    <td>
+                        <a asp-action="EditUser" asp-route-userid="@user.Id" asp-route-role="@Model.CurentEditor"  class="btn btn-warning">Edit</a>
+                    </td>
+                    <td>
+                        <form action="~/User/DeleteUser" method="post">
+                            <input type="hidden" name="Id" value="@user.Id" />
+                            <input type="submit" class="btn btn-danger" value="Delete" />
+                        </form>
+                    </td>
+
+                </tr>
+            }
+        </tbody>
+    </table>
+</body>

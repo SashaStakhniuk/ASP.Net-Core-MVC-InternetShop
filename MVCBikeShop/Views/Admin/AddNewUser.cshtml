@@ -1,0 +1,48 @@
+﻿@model MVCBikeShop.Models.User
+@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    ViewData["Title"] = "AddNewUser";
+}
+<div>
+    <form method="post" class="d-flex flex-column justify-content-around p-5">
+        @Html.HiddenFor(x => x.Id)
+        <div class="input-group row row-cols-6 m-2">
+            @Html.LabelFor(x => x.UserName)
+            @Html.TextBoxFor(x => x.UserName)
+        </div>
+        <div class="input-group row row-cols-6 m-2">
+            @Html.LabelFor(x => x.LastName)
+            @Html.TextBoxFor(x => x.LastName)
+        </div>
+        <div class="input-group row row-cols-6 m-2">
+            @Html.LabelFor(x => x.Email)
+            @Html.TextBoxFor(x => x.Email)
+        </div>
+        <div class="input-group row row-cols-6 m-2">
+            @Html.LabelFor(x => x.PasswordHash)
+            @Html.TextBoxFor(x => x.PasswordHash)
+        </div>
+        @*<div class="input-group row row-cols-6 m-2">
+            @Html.LabelFor(x => x.RoleId)
+            <select name="RoleId">
+
+                @foreach (var role in ViewBag.DB.Roles)
+                {
+
+                    if (role.RoleId == Model.RoleId)
+                    {
+                        <option selected value="@role.RoleId">@role.Name</option>
+                    }
+                    else
+                    {
+                        <option value="@role.RoleId">@role.Name</option>
+                    }
+                }
+            </select>
+        </div>*@
+
+        <input type="submit" value="Add" class="btn btn-success" style="min-width:50%; text-align:center;" />
+    </form>
+</div>

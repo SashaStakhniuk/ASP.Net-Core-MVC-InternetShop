@@ -3,7 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30717.126
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MVCBikeShop", "MVCBikeShop\MVCBikeShop.csproj", "{A1DFD241-1A2F-41CD-BB9E-200647EFFAC8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MVCBikeShop", "MVCBikeShop\MVCBikeShop.csproj", "{A1DFD241-1A2F-41CD-BB9E-200647EFFAC8}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WPF_API", "WPF_API\WPF_API\WPF_API.csproj", "{F7F85C80-DDC6-4886-8097-8A51D8F93341}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataAccessLayer", "DataAccessLayer\DataAccessLayer.csproj", "{779803A7-BA3E-4295-BE1F-7A47D227145E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +19,14 @@ Global
 		{A1DFD241-1A2F-41CD-BB9E-200647EFFAC8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A1DFD241-1A2F-41CD-BB9E-200647EFFAC8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A1DFD241-1A2F-41CD-BB9E-200647EFFAC8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F7F85C80-DDC6-4886-8097-8A51D8F93341}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F7F85C80-DDC6-4886-8097-8A51D8F93341}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F7F85C80-DDC6-4886-8097-8A51D8F93341}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F7F85C80-DDC6-4886-8097-8A51D8F93341}.Release|Any CPU.Build.0 = Release|Any CPU
+		{779803A7-BA3E-4295-BE1F-7A47D227145E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{779803A7-BA3E-4295-BE1F-7A47D227145E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{779803A7-BA3E-4295-BE1F-7A47D227145E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{779803A7-BA3E-4295-BE1F-7A47D227145E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

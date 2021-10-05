@@ -1,0 +1,13 @@
+.back{
+  background: url("../images/black.jpg");
+  background-size: 100vw 100vh;
+  backdrop-filter: blur(15px);
+}
+.backCart{
+  background: url("../images/wh-back.png");
+  background-size: 100vw 100vh;
+  backdrop-filter: blur(5px);
+}
+.card{
+	opacity:0.9;
+}

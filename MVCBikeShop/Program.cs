@@ -23,8 +23,7 @@ namespace MVCBikeShop
                 try
                 {
                     var context = servises.GetRequiredService<BikeContext>();
-
-                   TestData.Initialize(context);
+                    TestData.Initialize(context);
                 }
                 catch (Exception ex)
                 {

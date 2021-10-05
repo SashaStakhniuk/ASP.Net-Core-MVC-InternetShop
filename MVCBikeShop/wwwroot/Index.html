@@ -1,0 +1,203 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link type="text/css" rel="stylesheet" href="/bootstrap/css/bootstrap.min.css" />
+    <link type="text/css" rel="stylesheet" href="/Css/indexHtmlPage.css" />
+    <title>Bikes</title>
+
+</head>
+<body>
+    <h1 style="text-align:center;">Bikes list</h1>
+
+    <button class="button button--bestia m-4" id="modalForm" data-bs-toggle="modal" data-bs-target="#exampleModal">
+        <div class="button__bg"></div><span>Add new bike</span>
+    </button>
+
+    <!--<div class="input-group mb-3">
+        <input type="file" name="photo_Base64" class="form-control" id="photo_Base64">
+        <label class="input-group-text" for="photo_Base64">Upload</label>
+    </div>
+    <button id="convertToBase64">Convert</button>-->
+    <form enctype="multipart/form-data" name="sendForm" id="sendForm" class="p-3">
+        <p>
+            <label>Name</label>
+            <input name="Name" id="name" class="form-control" />
+        </p>
+        <p>
+            <label>File:</label>
+            <input name="Photo_Base64" id="photo_Base64" type="file" class="form-control" />
+        </p>
+        <p>
+            <input type="submit" value="Add" />
+        </p>
+    </form>
+    <button id="getBase64Photos">GetPhotos</button>
+    <div id="forPhotos"></div>
+
+    <div id="carouselExampleControls" class="carousel slide m-5" data-bs-ride="carousel">
+        <div class="carousel-inner">
+            <!--<div class="carousel-item active">
+                <img src="..." class="d-block w-100" alt="...">
+            </div>
+            <div class="carousel-item">
+                <img src="..." class="d-block w-100" alt="...">
+            </div>
+            <div class="carousel-item">
+                <img src="..." class="d-block w-100" alt="...">
+            </div>-->
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+        </button>
+    </div>
+
+    <!--<h3>Все пользователи</h3>
+    @foreach (var p in Model)
+    {
+    <div>
+        <h4>@p.Name</h4>
+        @if (p.Avatar != null)
+        {
+        <img style='width:80px; height:60px;' src="data:image/jpeg;base64,@(Convert.ToBase64String(p.Avatar))" />
+        }
+    </div>
+    }-->
+
+
+
+
+    <div class="container">
+        <div id="loginForm">
+            <label for="email">Email: </label>
+            <input type="text" value="MainAdmin@gmail.com" id="email" />
+            <label for="password">Password: </label>
+            <input type="password" value="Qwerty1!" id="password" />
+            <button id="submitLogin">Login</button>
+        </div>
+    </div>
+
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3 class="modal-title" id="exampleModalLabel">Bike</h3>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="container">
+                        <form name="bikeForm">
+                            <input type="hidden" name="bikeId" id="bikeId" value="0" />
+                            <div class="form-group">
+                                <label for="bikeTitle">Title:</label>
+                                <input type="text" name="bikeTitle" id="bikeTitle" class="form-control" />
+                            </div>
+                            <div class="row">
+                                <div class="form-group col-md-6">
+                                    <label for="manufactury">Manufactury:</label>
+                                    <select class="form-select" id="manufactury" name="manufactury">
+                                    </select>
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label for="type">Type:</label>
+                                    <select class="form-select" id="type" name="type">
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="form-group col-md-6">
+                                    <label for="material">Material:</label>
+                                    <select class="form-select" id="material" name="material">
+                                    </select>
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label for="breakType">BreakType:</label>
+                                    <select class="form-select" id="breakType" name="breakType">
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="form-group col-md-6">
+                                    <label for="speedCount">SpeedCount:</label>
+                                    <input type="number" min="0" name="speedCount" id="speedCount" class="form-control" />
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label for="size">Size:</label>
+                                    <input type="number" min="0" name="size" id="size" class="form-control" />
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="form-group col-md-6">
+                                    <label for="wheelDiameter">WheelDiameter:</label>
+                                    <input type="number" name="wheelDiameter" min="0" id="wheelDiameter" class="form-control" />
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label for="price">Price:</label>
+                                    <input type="number" name="price" min="0" id="price" class="form-control" />
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="photoPath">PhotoPath:</label>
+                                <input type="text" name="photoPath" id="photoPath" class="form-control" />
+                            </div>
+                            <div class="form-group">
+                                <div style="text-align:center;" id="forImg"></div>
+                            </div>
+                            <ul id="errors" class="list-group list-group-flush" style="display:none;"></ul>
+                            <div style="text-align:center;">
+                                <button id="submit" type="submit" value="create" class="btn btn-secondary" style="min-width:80%; margin:10px;">Save</button>
+                                <button id="editBike" type="button" value="edit" class="btn btn-warning" style="min-width:80%; margin:10px; display:none;">Edit</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" id="closeButton" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <!--Table-->
+    <table class="table mt-4">
+        <thead>
+            <tr>
+                <th>Title:</th>
+                <th>Bike:</th>
+                <th>Size:</th>
+                <th>SpeedCount:</th>
+                <th>WheelDiameter:</th>
+                <th>Price:</th>
+                <th>PhotoPath:</th>
+                <th>Manufactury:</th>
+                <th>Type:</th>
+                <th>Material:</th>
+                <th>BreakType:</th>
+            </tr>
+        </thead>
+        <tbody>
+        </tbody>
+    </table>
+
+    <div class="container">
+        <div id="myContainer">
+        </div>
+    </div>
+
+
+    <script type="text/javascript" src="/Js/forHtmlPage.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ" crossorigin="anonymous"></script>
+
+</body>
+</html>

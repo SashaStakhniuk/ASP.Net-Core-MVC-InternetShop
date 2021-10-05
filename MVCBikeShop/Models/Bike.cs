@@ -1,5 +1,7 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Http;
+using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -8,6 +10,7 @@ namespace MVCBikeShop.Models
     public class Bike
     {
         public int BikeId { get; set; }
+        [Required(AllowEmptyStrings=false, ErrorMessage = "Title is required field")]
         public string BikeTitle { get; set; }
         public int ManufacturyId { get; set; }
         public int TypeId { get; set; }
@@ -22,6 +25,5 @@ namespace MVCBikeShop.Models
         public virtual Type Type { get; set; }
         public virtual Material Material { get; set; }
         public virtual BreakType BreakType { get; set; }
-
     }
 }

@@ -1,36 +1,55 @@
-﻿@model IEnumerable<MVCBikeShop.Models.Bike>
+﻿@model MVCBikeShop.Models.Base64FilesViewModel
 @*
     For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 *@
 @{
     ViewData["Title"] = "Admin Panel";
 }
-<h1 style="text-align:center;">Admin Panel</h1>
-<a href="~/Admin/Create" class="btn btn-secondary">Create</a>
-<table class="table">
-    <thead>
-        <tr>
-            <th>Title</th>
-            <th>Price</th>
-            <th>Edit</th>
-            <th>Delete</th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var bike in Model)
-        {
-        <tr>
-            <td>@bike.BikeTitle</td>
-            <td>@bike.Price</td>
-            <td><a href="~/Admin/Create/@bike.BikeId" class="btn btn-warning">Edit</a></td>
-            <td>
-                <form method="post" action="~/Admin/Remove">
-                    <input type="hidden" value="@bike.BikeId" name="BikeId"/>
-                    <input type="submit" value="Remove" class="btn btn-danger" />
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
 
+<head>
+    <link type="text/css" rel="stylesheet" href="~/Css/background.css" />
+</head>
+<body class="back">
+    <h1 style="text-align:center; margin:1%; color:white;">Admin Panel</h1>
+
+    @*<div class="d-flex justify-content-end">
+            @if (User.Identity.IsAuthenticated)
+             {
+                <span>@User.Identity.Name</span>
+                <form method="post" href="~/Account/Logout">
+                    <button type="submit" class="btn btn-danger m-1" style="min-width:20%; min-height:20%;">Logout</button>
                 </form>
-            </td>
-        </tr>
+             }
+        </div>*@
+    <div class="d-flex justify-content-around">
+        <a href="~/Admin/EditGoods" class="btn btn-warning m-5" style="min-width:20%; min-height:20%;">Edit goods</a>
+        <a href="~/User/Index" class="btn btn-warning m-5" style="min-width:20%; min-height:20%;">Edit users</a>
+        <a href="~/Roles/Index" class="btn btn-primary m-5" style="min-width:20%; min-height:20%;">Roles</a>
+    </div>
+
+    <form asp-action="CreatePhoto" asp-controller="Admin" method="post" enctype="multipart/form-data" class="p-3">
+        <p>
+            <label>Name</label>
+            <input name="Name" class="form-control" />
+        </p>
+        <p>
+            <label>File:</label>
+            <input name="Photo_Base64" type="file" class="form-control" />
+        </p>
+        <p>
+            <input type="submit" value="Add" />
+        </p>
+    </form>
+    <h3 style="color:white;">All Photos</h3>
+    @foreach (var p in Model.PhotosInBytes)
+    {
+        <div class="d-flex row justify-content-around m-1" style="color:white;">
+            <h4>@p.Name</h4>
+            @if (p.Photo_Base64 != null)
+            {
+                <img style='width:20%;' src="data:image/jpeg;base64,@(Convert.ToBase64String(p.Photo_Base64))" />
+            }
+        </div>
     }
-        </tbody>
-    </table>
+</body>

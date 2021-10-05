@@ -1,0 +1,51 @@
+﻿@model IEnumerable<MVCBikeShop.Models.User>
+
+@{
+    ViewData["Title"] = "EditUsers";
+}
+<head>
+    <link type="text/css" rel="stylesheet" href="~/Css/background.css" />
+</head>
+<body class="back">
+    <h1 style="text-align:center; color:white; margin:3%;">Edit Users</h1>
+    <div style="text-align:center;">
+        <a href="~/Admin/AddNewUser" class="btn btn-success" style="min-width:50%;">Add new user</a>
+    </div>
+    <table class="table" style="color:white;">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>LastName</th>
+                <th>Email</th>
+                <th>Role</th>
+                <th>Edit</th>
+                <th>Delete</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var user in Model)
+            {
+                <tr>
+                    <td>@user.UserName</td>
+                    <td>@user.LastName</td>
+                    <td>@user.Email</td>
+                    @*@foreach (var role in ViewBag.Roles)
+                        {
+                            if (role.RoleId == user.RoleId)
+                            {
+                                <td>@role.Name</td>
+                                break;
+                            }
+                        }
+                        <td><a href="~/Admin/AddNewUser/@user.UserId" class="btn btn-warning">Edit</a></td>
+                        <td>
+                            <form method="post" action="~/Admin/RemoveUser">
+                                <input type="hidden" value="@user.UserId" name="UserId" />
+                                <input type="submit" value="Remove" class="btn btn-danger" />
+                            </form>
+                        </td>*@
+                </tr>
+            }
+        </tbody>
+    </table>
+</body>

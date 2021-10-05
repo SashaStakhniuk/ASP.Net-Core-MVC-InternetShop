@@ -37,6 +37,18 @@ namespace MVCBikeShop.Controllers
             }
             return RedirectToAction("Index",new { returnUrl });
         }
+        public IActionResult RemoveOneFromCart(int bikeId, string returnUrl)
+        {
+            Bike bike = context.Bikes.FirstOrDefault(x => x.BikeId == bikeId);
+            if (bike != null)
+            {
+                //видалити із корзини
+                var cart = GetCart();
+                cart.AddItem(bike, -1);
+                HttpContext.Session.SetObjectAsJson("Cart", cart);
+            }
+            return RedirectToAction("Index", new { returnUrl });
+        }
         public IActionResult RemoveFromCart(int bikeId, string returnUrl)
         {
             Bike bike = context.Bikes.FirstOrDefault(x => x.BikeId == bikeId);

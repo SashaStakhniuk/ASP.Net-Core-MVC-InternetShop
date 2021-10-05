@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "E:\\Sasha\\InternetShop-master\\InternetShop-master\\MVCBikeShop\\MVCBikeShop.csproj": {}
+    "E:\\Sasha\\MVC\\InternetShopToCopy\\InternetShop-master\\21.09.2021.15.34\\InternetShop-master\\MVCBikeShop\\MVCBikeShop.csproj": {}
   },
   "projects": {
-    "E:\\Sasha\\InternetShop-master\\InternetShop-master\\MVCBikeShop\\MVCBikeShop.csproj": {
+    "E:\\Sasha\\MVC\\InternetShopToCopy\\InternetShop-master\\21.09.2021.15.34\\InternetShop-master\\MVCBikeShop\\MVCBikeShop.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "E:\\Sasha\\InternetShop-master\\InternetShop-master\\MVCBikeShop\\MVCBikeShop.csproj",
+        "projectUniqueName": "E:\\Sasha\\MVC\\InternetShopToCopy\\InternetShop-master\\21.09.2021.15.34\\InternetShop-master\\MVCBikeShop\\MVCBikeShop.csproj",
         "projectName": "MVCBikeShop",
-        "projectPath": "E:\\Sasha\\InternetShop-master\\InternetShop-master\\MVCBikeShop\\MVCBikeShop.csproj",
+        "projectPath": "E:\\Sasha\\MVC\\InternetShopToCopy\\InternetShop-master\\21.09.2021.15.34\\InternetShop-master\\MVCBikeShop\\MVCBikeShop.csproj",
         "packagesPath": "C:\\Users\\mainusr\\.nuget\\packages\\",
-        "outputPath": "E:\\Sasha\\InternetShop-master\\InternetShop-master\\MVCBikeShop\\obj\\",
+        "outputPath": "E:\\Sasha\\MVC\\InternetShopToCopy\\InternetShop-master\\21.09.2021.15.34\\InternetShop-master\\MVCBikeShop\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Microsoft\\Xamarin\\NuGet\\"
@@ -42,9 +42,21 @@
       "frameworks": {
         "netcoreapp3.1": {
           "dependencies": {
+            "Microsoft.AspNetCore.Authentication.JwtBearer": {
+              "target": "Package",
+              "version": "[3.1.0, )"
+            },
+            "Microsoft.AspNetCore.Identity.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[3.1.18, )"
+            },
             "Microsoft.EntityFrameworkCore.SqlServer": {
               "target": "Package",
               "version": "[5.0.9, )"
+            },
+            "Microsoft.VisualStudio.Web.CodeGeneration.Design": {
+              "target": "Package",
+              "version": "[3.1.5, )"
             }
           },
           "imports": [

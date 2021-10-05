@@ -2,14 +2,12 @@
 /* ==========================================================================
    Footer Style
    ========================================================================== */
-
+ 
 footer {
-    bottom: 0;
-    background: #333;
-    padding: 60px 0px 30px;
-    text-align: center;
+  background: #333;
+  padding: 60px 0px 30px;
+  text-align: center;
 }
-
 .site-info p {
   line-height: 34px;
   color: #fff;

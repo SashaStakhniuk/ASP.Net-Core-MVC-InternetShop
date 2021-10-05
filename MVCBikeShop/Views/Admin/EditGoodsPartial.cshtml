@@ -1,0 +1,118 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
+
+<h1 style="text-align:center; color:white; margin:3%;">Edit Goods</h1>
+<div style="text-align:center;">
+    <a href="~/Admin/Create" class="btn btn-success" style="min-width:50%;">Add new good</a>
+</div>
+
+
+
+
+<button class="btn btn-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasWithBothOptions" aria-controls="offcanvasWithBothOptions">Filters:</button>
+
+<div class="offcanvas offcanvas-start" data-bs-scroll="true" tabindex="-1" id="offcanvasWithBothOptions" aria-labelledby="offcanvasWithBothOptionsLabel">
+    <div class="offcanvas-header">
+        <h5 class="offcanvas-title" id="offcanvasWithBothOptionsLabel">Filter menu</h5>
+        <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+    </div>
+    <div class="offcanvas-body col">
+        <p>Search by:</p>
+
+        <div class="d-flex flex-column">
+            <div class="m-1 row row-cols-2">
+                <div>
+                    <b>Manufactury:</b>
+                </div>
+                <div>
+                    <select id="manufactury" asp-items="Model.Manufacturies"></select>
+                </div>
+            </div>
+            <div class="m-1 row row-cols-2">
+                <div><b>Type:</b></div>
+
+                <div>
+                    <select id="type" asp-items="Model.Types"></select>
+                </div>
+
+            </div>
+            <div class="m-1 row row-cols-2">
+                <div><b>WheelsDiameter:</b></div>
+                <div>
+                    <select id="wheelDiameters" asp-items="Model.WheelDiameters"></select>
+                </div>
+            </div>
+            <div class="m-1 row row-cols-2">
+                <div><b>Material:</b></div>
+                <div>
+                    <select id="material" asp-items="Model.Materials"></select>
+                </div>
+
+            </div>
+            <div class="m-1 row row-cols-2">
+                <div><b>Speeds Amount:</b></div>
+                <div>
+                    <select id="speedAmount" asp-items="Model.SpeedCount"></select>
+                </div>
+            </div>
+            <div class="m-1 row row-cols-2">
+                <div><b>Size:</b></div>
+                <div>
+                    <select id="size" asp-items="Model.Size"></select>
+                </div>
+            </div>
+            <div class="m-1 row row-cols-2">
+                <div><b>Break type:</b></div>
+                <div>
+                    <select id="breakType" asp-items="Model.BreakType"></select>
+                </div>
+            </div>
+            <b>Price:</b>
+            <div class="m-1 row row-cols-2">
+                <div>Since:</div>
+                <div><input type="number" id="priceFrom" /></div>
+                <br />
+                <div>To:</div>
+                <div><input type="number" id="priceTo" /></div>
+            </div>
+            <button id="filterButtonSearch" class="btn btn-sm btn-primary" style="min-width:50%; text-align:center;">Search</button>
+        </div>
+    </div>
+</div>
+
+<table class="table" style="color:white;">
+    <thead>
+        <tr>
+            <th>
+                <a asp-controller="Admin" asp-action="EditGoods" asp-route-sortType="TitleAsc">Title</a>
+            </th>
+            <th>
+                <a asp-controller="Admin" asp-action="EditGoods" asp-route-sortType="PriceAsc">Price</a>
+            </th>
+            <th>Edit</th>
+            <th>Delete</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var bike in Model.Bikes)
+        {
+            <tr>
+                <td>@bike.BikeTitle</td>
+                <td>@bike.Price</td>
+                <td><a href="~/Admin/Create/@bike.BikeId" class="btn btn-warning">Edit</a></td>
+                <td>
+                    <form method="post" action="~/Admin/Remove">
+                        <input type="hidden" value="@bike.BikeId" name="BikeId" />
+                        <input type="submit" value="Remove" class="btn btn-danger" />
+                    </form>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+<script src="~/Js/searchBikeList.js"></script>
